@@ -1,6 +1,6 @@
 
 
-let todos = []
+let todos = JSON.parse(localStorage.getItem("Todos"))   || [];
 
 let editTodoId = null
 
@@ -34,6 +34,7 @@ todoForm.addEventListener("submit", (e) => {
             }
             return todo
         })
+        localStorage.setItem("todos", JSON.stringify(todos))
     }
     else {
         // Adding
@@ -44,6 +45,7 @@ todoForm.addEventListener("submit", (e) => {
         }
 
         todos.push(newTodo)
+        localStorage.setItem("todos", JSON.stringify(todos))
     }
     cancelEdit();
     renderTodo()
@@ -107,6 +109,7 @@ todoList.addEventListener('click', (e) => {
             }
             return todo
         })
+        localStorage.setItem("todos", JSON.stringify(todos))
         renderTodo()
     }
 })
@@ -120,6 +123,7 @@ function deleteTodo(id) {
             return todo
         }
     })
+    localStorage.setItem("todos", JSON.stringify(todos))
     renderTodo()
 }
 
